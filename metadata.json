@@ -1,0 +1,15 @@
+{
+  "name": "tykeal-zuul",
+  "version": "0.1.0",
+  "author": "tykeal",
+  "summary": "Management of OpenStack Zuul",
+  "license": "Apache-2.0",
+  "source": "https://github.com/tykeal/puppet-zuul.git",
+  "project_page": "https://github.com/tykeal/puppet-zuul",
+  "issues_url": "https://github.com/tykeal/puppet-zuul/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ],
+  "data_provider": null
+}
+

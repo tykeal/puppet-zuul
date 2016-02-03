@@ -1,0 +1,8 @@
+fixtures:
+  # use the forge modules so we can easily pin to a specific version
+  forge_modules:
+    stdlib: "puppetlabs/stdlib"
+    python: "stankevich/python"
+    vcsrepo: "puppetlabs/vcsrepo"
+  symlinks:
+    zuul: "#{source_dir}"
