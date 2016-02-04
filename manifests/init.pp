@@ -1,48 +1,62 @@
 # Class: zuul
 # ===========================
 #
-# Full description of class zuul here.
+# Manages OpenStack zuul.
 #
 # Parameters
 # ----------
 #
-# Document parameters here.
-#
-# * `sample parameter`
-# Explanation of what this parameter affects and what it defaults to.
-# e.g. "Specify one or more upstream ntp servers as an array."
 #
 # Variables
 # ----------
 #
-# Here you should define a list of variables that this module would require.
-#
-# * `sample variable`
-#  Explanation of how this variable affects the function of this class and if
-#  it has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#  External Node Classifier as a comma separated list of hostnames." (Note,
-#  global variables should be avoided in favor of class parameters as
-#  of Puppet 2.6.)
 #
 # Examples
 # --------
 #
-# @example
-#    class { 'zuul':
-#      servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
-#    }
-#
 # Authors
 # -------
 #
-# Author Name <author@domain.com>
+# Andrew Grimberg <agrimberg@linuxfoundation.org>
 #
 # Copyright
 # ---------
 #
-# Copyright 2016 Your name here, unless otherwise noted.
+# Copyright 2016 Andrew Grimberg
 #
-class zuul {
+# === License
+#
+# @License Apache-2.0 <http://spdx.org/licenses/Apache-2.0>
+#
+class zuul (
+  Hash    $config_override  = {},
+  String  $group            = $zuul::params::group,
+  String  $install_via      = $zuul::params::install_via,
+  Boolean $manage_layout    = $zuul::params::manage_layout,
+  String  $pip_package      = $zuul::params::pip_package,
+  String  $pip_version      = $zuul::params::pip_version,
+  String  $user             = $zuul::params::user,
+  String  $user_home        = $zuul::params::user_home,
+  String  $vcs_path         = $zuul::params::vcs_path,
+  String  $vcs_source       = $zuul::params::vcs_source,
+  String  $vcs_type         = $zuul::params::vcs_type,
+  Optional[String] $vcs_ref = $zuul::params::vcs_ref,
+  String  $venv_path        = $zuul::params::venv_path,
+  String  $zuul_config      = $zuul::params::zuul_config,
+) inherits zuul::params {
 
+  anchor { 'zuul::begin': }
+  anchor { 'zuul::end': }
 
+  class { 'zuul::install':
+  }
+
+  class { 'zuul::config':
+  }
+
+  class { 'zuul::service':
+  }
+
+  Anchor['zuul::begin'] ->
+  Anchor['zuul::end']
 }
