@@ -8,3 +8,4 @@ gem 'facter', '>= 1.7.0'
 gem 'rspec', '~>3.3.0'
 gem 'rspec-puppet', '~>2.2.0'
 gem 'metadata-json-lint'
+gem 'rspec-puppet-facts', :require => false
