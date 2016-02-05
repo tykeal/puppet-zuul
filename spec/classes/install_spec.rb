@@ -37,6 +37,17 @@ describe 'zuul::install' do
           :shell      => '/bin/bash',
           :require    => "Group[#{params['group']}]"
         ) }
+        it { should contain_file("#{params['user_home']}/.ssh").with(
+          :ensure  => 'directory',
+          :owner   => params['user'],
+          :group   => params['group'],
+          :mode    => '0700',
+          :require => "User[#{params['user']}]",
+        ) }
+        it { should contain_exec("Create #{params['user']}_user SSH key").with(
+          :creates => "#{params['user_home']}/.ssh/id_rsa",
+          :require => "File[#{params['user_home']}/.ssh]",
+        ) }
         it { should contain_python__virtualenv(params['venv_path']).with(
           :ensure   => 'present',
           :owner    => 'root',

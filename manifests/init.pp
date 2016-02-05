@@ -60,6 +60,8 @@ class zuul (
     vcs_type    => $vcs_type,
     vcs_ref     => $vcs_ref,
     venv_path   => $venv_path,
+    # in case of upgrades
+    notify      => Class['zuul::service'],
   }
 
   class { 'zuul::config':
@@ -69,5 +71,8 @@ class zuul (
   }
 
   Anchor['zuul::begin'] ->
+    Class['zuul::install'] ->
+    Class['zuul::config'] ~>
+    Class['zuul::service'] ->
   Anchor['zuul::end']
 }

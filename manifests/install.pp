@@ -41,6 +41,8 @@ class zuul::install (
   String $venv_path,
   Optional[String] $vcs_ref,
 ) {
+  validate_absolute_path($user_home)
+
   group { $group:
     ensure => present,
   }
@@ -52,6 +54,21 @@ class zuul::install (
     managehome => true,
     shell      => '/bin/bash',
     require    => Group[$group],
+  }
+
+  file { "${user_home}/.ssh":
+    ensure  => directory,
+    owner   => $user,
+    group   => $group,
+    mode    => '0700',
+    require => User[$user],
+  }
+
+  exec { "Create ${user}_user SSH key":
+    path    => '/usr/bin',
+    command => "ssh-keygen -t rsa -N '' -f ${user_home}/.ssh/id_rsa -C 'Zuul'",
+    creates => "${user_home}/.ssh/id_rsa",
+    require => File["${user_home}/.ssh"],
   }
 
   python::virtualenv { $venv_path:
