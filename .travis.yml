@@ -1,6 +1,16 @@
-rvm: 2.1.8-p440
+---
+sudo: false
+language: ruby
+cache: bundler
+bundler_args: --without system_tests
+script: 'bundle exec rake validate lint spec'
 notifications:
   email:
     - grimbeaj+travisci@gmail.com
-env:
-  - PUPPET_VERSION=4.0.0
+matrix:
+  fast_finish: true
+  include:
+    - rvm: 2.1.6
+      env: PUPPET_GEM_VERSION="~> 4.0" STRICT_VARIABLES="yes"
+    - rvm: 2.1.5
+      env: PUPPET_GEM_VERSION="~> 3.0" FUTURE_PARSER="yes"
