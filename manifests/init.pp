@@ -31,7 +31,7 @@
 class zuul (
   Hash    $config_override  = {},
   String  $group            = $zuul::params::group,
-  String  $install_via      = $zuul::params::install_via,
+  Enum['pip', 'vcs'] $install_via = $zuul::params::install_via,
   Boolean $manage_layout    = $zuul::params::manage_layout,
   String  $pip_package      = $zuul::params::pip_package,
   String  $pip_version      = $zuul::params::pip_version,
@@ -49,6 +49,17 @@ class zuul (
   anchor { 'zuul::end': }
 
   class { 'zuul::install':
+    install_via => $install_via,
+    pip_package => $pip_package,
+    pip_version => $pip_version,
+    group       => $group,
+    user        => $user,
+    user_home   => $user_home,
+    vcs_path    => $vcs_path,
+    vcs_source  => $vcs_source,
+    vcs_type    => $vcs_type,
+    vcs_ref     => $vcs_ref,
+    venv_path   => $venv_path,
   }
 
   class { 'zuul::config':

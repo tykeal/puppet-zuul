@@ -4,5 +4,6 @@ fixtures:
     stdlib: "puppetlabs/stdlib"
     python: "stankevich/python"
     vcsrepo: "puppetlabs/vcsrepo"
+    epel: 'stahnma/epel'
   symlinks:
     zuul: "#{source_dir}"
