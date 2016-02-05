@@ -55,9 +55,11 @@ class zuul::install (
   }
 
   python::virtualenv { $venv_path:
-    ensure => present,
-    owner  => 'root',
-    group  => 'root',
+    ensure   => present,
+    owner    => 'root',
+    group    => 'root',
+    venv_dir => $venv_path,
+    cwd      => $venv_path,
   }
 
   case $install_via {
