@@ -68,6 +68,7 @@ class zuul::install (
     path    => '/usr/bin',
     command => "ssh-keygen -t rsa -N '' -f ${user_home}/.ssh/id_rsa -C 'Zuul'",
     creates => "${user_home}/.ssh/id_rsa",
+    user    => $user,
     require => File["${user_home}/.ssh"],
   }
 
