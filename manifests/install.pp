@@ -114,6 +114,7 @@ class zuul::install (
       venv_path   => $venv_path,
       prog        => 'zuul-server',
       description => 'Zuul Server',
+      signal      => 'SIGUSR1',
     } ),
   }
 
@@ -129,6 +130,7 @@ class zuul::install (
       venv_path   => $venv_path,
       prog        => 'zuul-merger',
       description => 'Zuul Merger',
+      signal      => 'SIGTERM',
     } ),
   }
 

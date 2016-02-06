@@ -1,8 +1,10 @@
-<%- | String $user,
-      String $group,
-      String $venv_path,
-      String $prog,
-      String $description
+<%- |
+	String $description,
+	String $group,
+	String $prog,
+	String $signal,
+	String $user,
+	String $venv_path,
 | -%>
 # WARNING THIS FILE IS MANAGED BY PUPPET
 [Unit]
@@ -16,7 +18,7 @@ Group=<%= $user %>
 Environment=VIRTUAL_ENV=<%= $venv_path %>
 Environment=PATH=$VIRTUAL_ENV/bin:$PATH
 ExecStart=<%= $venv_path %>/bin/<%= $prog %> -d
-KillSignal=SIGUSR1
+KillSignal=<%= $signal %>
 ExecReload=/bin/kill -SIGHUP $MAINPID
 
 [Install]
