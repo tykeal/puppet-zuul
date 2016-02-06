@@ -1,0 +1,17 @@
+# WARNING THIS FILE IS MANAGED BY PUPPET
+[Unit]
+Description=Zuul
+After=network.target
+
+[Service]
+SyslogIdentifier=zuul
+User=<%= @zuul_user %>
+Group=<%= @zuul_user %>
+Environment=VIRTUAL_ENV=<%= @venv_path %>
+Environment=PATH=$VIRTUAL_ENV/bin:$PATH
+ExecStart=$VIRTUAL_ENV/bin/zuul-server -d
+KillSignal=SIGUSR1
+ExecReload=/bin/kill -SIGHUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

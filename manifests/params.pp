@@ -60,6 +60,9 @@ class zuul::params {
   # logging is optional and defaults to none
   $manage_logging = false
 
+  # should the service be enabled
+  $service_enabled = true
+
   # default config options hash
   $default_config_options = {
     'gearman'  => {

@@ -40,6 +40,8 @@ class zuul (
   Boolean $manage_logging   = $zuul::params::manage_logging,
   String  $pip_package      = $zuul::params::pip_package,
   String  $pip_version      = $zuul::params::pip_version,
+  Variant[Boolean, Enum['manual']] $service_enabled =
+                              $zuul::params::service_enabled,
   String  $user             = $zuul::params::user,
   String  $user_home        = $zuul::params::user_home,
   String  $vcs_path         = $zuul::params::vcs_path,
@@ -81,6 +83,7 @@ class zuul (
   }
 
   class { 'zuul::service':
+    service_enabled => $service_enabled,
   }
 
   Anchor['zuul::begin'] ->

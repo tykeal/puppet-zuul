@@ -100,4 +100,13 @@ class zuul::install (
     }
     default: { fail("install_via param '${install_via}' is not valid") }
   }
+
+  file { 'zuul_systemd_script':
+    ensure  => file,
+    path    => '/usr/lib/systemd/system/zuul.service',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => template('zuul/zuul.service.erb'),
+  }
 }

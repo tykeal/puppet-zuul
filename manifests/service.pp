@@ -28,5 +28,19 @@
 #
 # @License Apache-2.0 <http://spdx.org/licenses/Apache-2.0>
 #
-class zuul::service {
+class zuul::service (
+  Variant[Boolean, Enum['manual']] $service_enabled,
+) {
+  if is_bool($service_enabled) {
+    $ensure = $service_enabled
+  } else {
+    $ensure = undef
+  }
+
+  # make sure that a notice causes a reload and not stop / start
+  service { 'zuul':
+    ensure  => $ensure,
+    enable  => $service_enabled,
+    restart => '/bin/systemctl reload zuul'
+  }
 }

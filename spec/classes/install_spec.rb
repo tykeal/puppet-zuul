@@ -58,6 +58,7 @@ describe 'zuul::install' do
         it { should contain_class("zuul::install::#{via}").with(
           :require => "Python::Virtualenv[#{params['venv_path']}]",
         ) }
+        it { should contain_file('zuul_systemd_script') }
       end
     end
 #  end
