@@ -41,6 +41,12 @@ class zuul::service (
   service { 'zuul':
     ensure  => $ensure,
     enable  => $ensure,
-    restart => '/bin/systemctl reload zuul'
+    restart => '/bin/systemctl reload zuul',
+  }
+
+  service { 'zuul-merger':
+    ensure  => $ensure,
+    enable  => $ensure,
+    restart => '/bin/systemctl reload zuul-merger',
   }
 }

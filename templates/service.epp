@@ -1,0 +1,23 @@
+<%- | String $user,
+      String $group,
+      String $venv_path,
+      String $prog,
+      String $description
+| -%>
+# WARNING THIS FILE IS MANAGED BY PUPPET
+[Unit]
+Description=<%= $description %>
+After=network.target
+
+[Service]
+SyslogIdentifier=zuul
+User=<%= $user %>
+Group=<%= $user %>
+Environment=VIRTUAL_ENV=<%= $venv_path %>
+Environment=PATH=$VIRTUAL_ENV/bin:$PATH
+ExecStart=<%= $venv_path %>/bin/<%= $prog %> -d
+KillSignal=SIGUSR1
+ExecReload=/bin/kill -SIGHUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

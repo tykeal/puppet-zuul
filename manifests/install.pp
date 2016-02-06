@@ -107,7 +107,28 @@ class zuul::install (
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template('zuul/zuul.service.erb'),
+    content => epp('zuul/service.epp', {
+      user        => $user,
+      group       => $group,
+      venv_path   => $venv_path,
+      prog        => 'zuul-server',
+      description => 'Zuul Server',
+    } ),
+  }
+
+  file { 'zuul_merger_systemd_script':
+    ensure  => file,
+    path    => '/usr/lib/systemd/system/zuul-merger.service',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => epp('zuul/service.epp', {
+      user        => $user,
+      group       => $group,
+      venv_path   => $venv_path,
+      prog        => 'zuul-merger',
+      description => 'Zuul Merger',
+    } ),
   }
 
   # support directories

@@ -59,6 +59,7 @@ describe 'zuul::install' do
           :require => "Python::Virtualenv[#{params['venv_path']}]",
         ) }
         it { should contain_file('zuul_systemd_script') }
+        it { should contain_file('zuul_merger_systemd_script') }
 
         # support directories, this should always be created. If zuul is
         # configured to use different directories they will need to be
