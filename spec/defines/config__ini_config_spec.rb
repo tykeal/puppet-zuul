@@ -36,7 +36,7 @@ describe 'zuul::config::ini_config', :type => :define do
   context 'config file' do
     it { is_expected.to contain_file('/opt/test.config').with(
       'mode'    => '0440',
-      'content' => "; MANAGED BY PUPPET\n\n[testsection]\n\ttestvar1 = testvar1\n\ttestvar2 = testvar2.1\n\ttestvar2 = testvar2.2\n\n[testsection sub]\n\ttestvar3 = testvar3\n\n",
+      'content' => "[testsection]\ntestvar1=testvar1\ntestvar2=testvar2.1\ntestvar2=testvar2.2\n\n[testsection sub]\ntestvar3=testvar3\n\n",
     ) }
   end
 

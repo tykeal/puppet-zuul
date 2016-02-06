@@ -1,5 +1,3 @@
-; MANAGED BY PUPPET
-
 <% @options.sort.map do |section, var_hash| -%>
 <% if section.include? '.' -%>
 <% section_arr = section.split('.') -%>
@@ -10,10 +8,10 @@
 <% var_hash.sort.map do |var, val_or_arr| -%>
 <% if val_or_arr.is_a? Array -%>
 <% val_or_arr.each do |val| -%>
-	<%= var %> = <%= val %>
+<%= var %>=<%= val %>
 <% end -%>
 <% else -%>
-	<%= var %> = <%= val_or_arr %>
+<%= var %>=<%= val_or_arr %>
 <% end -%>
 <% end -%>
 
