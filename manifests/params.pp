@@ -19,7 +19,9 @@
 #
 class zuul::params {
   # Configuration files
-  $zuul_config = '/etc/zuul/zuul.conf'
+  $layout_config = '/etc/zuul/layout.yaml'
+  $log_config    = '/etc/zuul/logging.conf'
+  $zuul_config   = '/etc/zuul/zuul.conf'
 
   # user configuration
   $user      = 'zuul'
@@ -54,6 +56,9 @@ class zuul::params {
   # the proper location must be setup or zuul services will be unable to
   # start!
   $manage_layout = true
+
+  # logging is optional and defaults to none
+  $manage_logging = false
 
   # default config options hash
   $default_config_options = {

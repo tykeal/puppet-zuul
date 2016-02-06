@@ -10,6 +10,14 @@ describe 'zuul' do
 
 #  on_supported_os.each do |os, facts|
 #    context "on #{os} with defaults for all parameters" do
+    let(:params) {
+      {
+        'layout' => {
+          'pipelines' => 'dummy_pipeline',
+          'projects'  => 'dummy_project',
+        },
+      }
+    }
     context "with defaults for all parameters" do
       it { should compile }
       it { should contain_class('zuul') }

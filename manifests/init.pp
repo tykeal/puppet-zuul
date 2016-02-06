@@ -32,7 +32,12 @@ class zuul (
   Hash    $config_override  = {},
   String  $group            = $zuul::params::group,
   Enum['pip', 'vcs'] $install_via = $zuul::params::install_via,
+  String  $layout_config    = $zuul::params::layout_config,
+  Hash    $layout           = {},
+  String  $log_config       = $zuul::params::log_config,
+  Hash    $logging          = {},
   Boolean $manage_layout    = $zuul::params::manage_layout,
+  Boolean $manage_logging   = $zuul::params::manage_logging,
   String  $pip_package      = $zuul::params::pip_package,
   String  $pip_version      = $zuul::params::pip_version,
   String  $user             = $zuul::params::user,
@@ -65,6 +70,14 @@ class zuul (
   }
 
   class { 'zuul::config':
+    config_override => $config_override,
+    layout_config   => $layout_config,
+    layout          => $layout,
+    log_config      => $log_config,
+    logging         => $logging,
+    manage_layout   => $manage_layout,
+    manage_logging  => $manage_logging,
+    zuul_config     => $zuul_config,
   }
 
   class { 'zuul::service':
