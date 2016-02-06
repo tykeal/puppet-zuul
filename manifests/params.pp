@@ -57,8 +57,8 @@ class zuul::params {
   # start!
   $manage_layout = true
 
-  # logging is optional and defaults to none
-  $manage_logging = false
+  # logging is technically optional
+  $manage_logging = true
 
   # should the service be enabled
   $service_enabled = true
@@ -74,7 +74,7 @@ class zuul::params {
     'zuul'            => {
       'layout_config' => '/etc/zuul/layout.yaml',
       'log_config'    => '/etc/zuul/logging.conf',
-      'pidfile'       => '/var/run/zuul/zuul.pid',
+      'pidfile'       => '/var/run/zuul.pid',
       'state_dir'     => '/var/lib/zuul',
       'status_url'    => 'https://zuul.example.com/status',
     },
