@@ -59,6 +59,34 @@ describe 'zuul::install' do
           :require => "Python::Virtualenv[#{params['venv_path']}]",
         ) }
         it { should contain_file('zuul_systemd_script') }
+
+        # support directories, this should always be created. If zuul is
+        # configured to use different directories they will need to be
+        # managed outside of the module
+        it { should contain_file('/etc/zuul').with(
+          :ensure => 'directory',
+          :owner  => params['user'],
+          :group  => params['group'],
+        ) }
+
+        it { should contain_file('/var/lib/zuul').with(
+          :ensure => 'directory',
+          :owner  => params['user'],
+          :group  => params['group'],
+        ) }
+
+        it { should contain_file('/var/lib/zuul/git').with(
+          :ensure => 'directory',
+          :owner  => params['user'],
+          :group  => params['group'],
+        ) }
+
+        it { should contain_file('/var/log/zuul').with(
+          :ensure => 'directory',
+          :owner  => params['user'],
+          :group  => params['group'],
+          :mode   => '0770',
+        ) }
       end
     end
 #  end

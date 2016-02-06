@@ -35,7 +35,7 @@ class zuul (
   String  $layout_config    = $zuul::params::layout_config,
   Hash    $layout           = {},
   String  $log_config       = $zuul::params::log_config,
-  Hash    $logging          = {},
+  Hash    $logging          = $zuul::params::default_logging,
   Boolean $manage_layout    = $zuul::params::manage_layout,
   Boolean $manage_logging   = $zuul::params::manage_logging,
   String  $pip_package      = $zuul::params::pip_package,

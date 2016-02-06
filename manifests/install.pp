@@ -109,4 +109,22 @@ class zuul::install (
     mode    => '0644',
     content => template('zuul/zuul.service.erb'),
   }
+
+  # support directories
+  file { [
+      '/etc/zuul',
+      '/var/lib/zuul',
+      '/var/lib/zuul/git',
+    ]:
+    ensure => directory,
+    owner  => $user,
+    group  => $group,
+  }
+
+  file { '/var/log/zuul':
+    ensure => directory,
+    owner  => $user,
+    group  => $group,
+    mode   => '0770',
+  }
 }
