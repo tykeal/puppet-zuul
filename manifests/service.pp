@@ -40,7 +40,7 @@ class zuul::service (
   # make sure that a notice causes a reload and not stop / start
   service { 'zuul':
     ensure  => $ensure,
-    enable  => $service_enabled,
+    enable  => $ensure,
     restart => '/bin/systemctl reload zuul'
   }
 }
