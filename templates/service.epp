@@ -16,7 +16,7 @@ SyslogIdentifier=zuul
 User=<%= $user %>
 Group=<%= $user %>
 Environment=VIRTUAL_ENV=<%= $venv_path %>
-Environment=PATH=$VIRTUAL_ENV/bin:$PATH
+Environment=PATH=$VIRTUAL_ENV/bin:/usr/bin
 ExecStart=<%= $venv_path %>/bin/<%= $prog %> -d
 KillSignal=<%= $signal %>
 ExecReload=/bin/kill -SIGHUP $MAINPID
