@@ -82,12 +82,12 @@ class zuul::params {
       'git_dir'  => '/var/lib/zuul/git',
       'zuul_url' => 'http://zuul.example.com/p',
     },
-    'gerrit'   => {
-      'driver' => 'gerrit',
-      'server' => 'review.example.com',
-      'user'   => $user,
-      'sshkey' => "${user_home}/.ssh/id_rsa",
-    },
+#    'gerrit'   => {
+#      'driver' => 'gerrit',
+#      'server' => 'review.example.com',
+#      'user'   => $user,
+#      'sshkey' => "${user_home}/.ssh/id_rsa",
+#    },
   }
 
   # default logging configuration
