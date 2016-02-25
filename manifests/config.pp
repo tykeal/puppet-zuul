@@ -36,6 +36,7 @@ class zuul::config (
   Hash    $logging,
   Boolean $manage_layout,
   Boolean $manage_logging,
+  Boolean $manage_website,
   String  $zuul_config,
 ) {
   include zuul::params
@@ -80,5 +81,10 @@ class zuul::config (
     config_file => $zuul_config,
     mode        => '0644',
     options     => $zuul_config_options,
+  }
+
+  if ($manage_website) {
+    class { 'zuul::config::website':
+    }
   }
 }

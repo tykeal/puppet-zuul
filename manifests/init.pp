@@ -54,16 +54,17 @@ class zuul (
   anchor { 'zuul::end': }
 
   class { 'zuul::install':
-    group      => $group,
-    user       => $user,
-    user_home  => $user_home,
-    vcs_path   => $vcs_path,
-    vcs_source => $vcs_source,
-    vcs_type   => $vcs_type,
-    vcs_ref    => $vcs_ref,
-    venv_path  => $venv_path,
+    group          => $group,
+    manage_website => $manage_website,
+    user           => $user,
+    user_home      => $user_home,
+    vcs_path       => $vcs_path,
+    vcs_source     => $vcs_source,
+    vcs_type       => $vcs_type,
+    vcs_ref        => $vcs_ref,
+    venv_path      => $venv_path,
     # in case of upgrades
-    notify     => Class['zuul::service'],
+    notify         => Class['zuul::service'],
   }
 
   class { 'zuul::config':
@@ -74,6 +75,7 @@ class zuul (
     logging         => $logging,
     manage_layout   => $manage_layout,
     manage_logging  => $manage_logging,
+    manage_website  => $manage_website,
     zuul_config     => $zuul_config,
   }
 

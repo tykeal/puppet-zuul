@@ -15,6 +15,7 @@ describe 'zuul::config' do
           'logging'         => {},
           'manage_layout'   => true,
           'manage_logging'  => false,
+          'manage_website'  => true,
           'zuul_config'     => '/foo/bar.conf',
         }
       }
@@ -55,6 +56,13 @@ describe 'zuul::config' do
       it 'should have a logging configuration if manage_logging is true' do
         params.merge!({ 'manage_logging' => true })
         should contain_file(params['log_config'])
+      end
+
+      it { should contain_class('zuul::config::website') }
+
+      it 'should not contain zuul::config::website when maange_website is false' do
+        params.merge!({ 'manage_website' => false })
+        should_not contain_class('zuul::config::website')
       end
     end
   end

@@ -30,6 +30,7 @@
 #
 class zuul::install (
   String $group,
+  Boolean $manage_website,
   String $user,
   String $user_home,
   String $vcs_path,
@@ -134,5 +135,10 @@ class zuul::install (
     owner  => $user,
     group  => $group,
     mode   => '0770',
+  }
+
+  if ($manage_website) {
+    class { 'zuul::install::website':
+    }
   }
 }

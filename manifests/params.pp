@@ -53,6 +53,9 @@ class zuul::params {
   # logging is technically optional
   $manage_logging = true
 
+  # Should an apache vhost be configured for merger & status
+  $manage_website = true
+
   # should the service be enabled
   $service_enabled = true
 
