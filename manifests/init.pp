@@ -31,15 +31,13 @@
 class zuul (
   Hash    $config_override  = {},
   String  $group            = $zuul::params::group,
-  Enum['pip', 'vcs'] $install_via = $zuul::params::install_via,
   String  $layout_config    = $zuul::params::layout_config,
   Hash    $layout           = {},
   String  $log_config       = $zuul::params::log_config,
   Hash    $logging          = $zuul::params::default_logging,
   Boolean $manage_layout    = $zuul::params::manage_layout,
   Boolean $manage_logging   = $zuul::params::manage_logging,
-  String  $pip_package      = $zuul::params::pip_package,
-  String  $pip_version      = $zuul::params::pip_version,
+  Boolean $manage_website   = $zuul::params::manage_website,
   Variant[Boolean, Enum['manual']] $service_enabled =
                               $zuul::params::service_enabled,
   String  $user             = $zuul::params::user,
@@ -56,19 +54,16 @@ class zuul (
   anchor { 'zuul::end': }
 
   class { 'zuul::install':
-    install_via => $install_via,
-    pip_package => $pip_package,
-    pip_version => $pip_version,
-    group       => $group,
-    user        => $user,
-    user_home   => $user_home,
-    vcs_path    => $vcs_path,
-    vcs_source  => $vcs_source,
-    vcs_type    => $vcs_type,
-    vcs_ref     => $vcs_ref,
-    venv_path   => $venv_path,
+    group      => $group,
+    user       => $user,
+    user_home  => $user_home,
+    vcs_path   => $vcs_path,
+    vcs_source => $vcs_source,
+    vcs_type   => $vcs_type,
+    vcs_ref    => $vcs_ref,
+    venv_path  => $venv_path,
     # in case of upgrades
-    notify      => Class['zuul::service'],
+    notify     => Class['zuul::service'],
   }
 
   class { 'zuul::config':

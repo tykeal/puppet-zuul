@@ -31,13 +31,6 @@ class zuul::params {
   # virtual env info
   $venv_path = '/opt/venv-zuul'
 
-  # installation picker
-  $install_via = 'pip'
-
-  # pip install
-  $pip_package = 'zuul'
-  $pip_version = 'present'
-
   # vcs info
   $vcs_path   = '/opt/vcs-zuul'
   $vcs_source = 'https://github.com/openstack-infra/zuul.git'
